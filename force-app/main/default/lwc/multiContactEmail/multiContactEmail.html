@@ -1,0 +1,63 @@
+<template>
+
+<lightning-card title="Send Email to Contacts">
+
+<div class="slds-p-around_medium">
+
+    <lightning-input
+        type="search"
+        label="Search Contacts"
+        onchange={handleSearch}>
+    </lightning-input>
+
+    <template if:true={searchResults}>
+        <ul class="slds-listbox slds-listbox_vertical">
+            <template for:each={searchResults} for:item="contact">
+                <li key={contact.Id}
+                    data-id={contact.Id}
+                    data-name={contact.Name}
+                    data-email={contact.Email}
+                    onclick={selectContact}
+                    class="slds-p-around_small slds-listbox__item">
+
+                    {contact.Name} ({contact.Email})
+                </li>
+            </template>
+        </ul>
+    </template>
+
+    <div class="slds-m-top_small">
+        <template for:each={selectedContacts} for:item="con">
+            <lightning-pill
+                key={con.Id}
+                label={con.Name}
+                name={con.Id}
+                onremove={removeContact}>
+            </lightning-pill>
+        </template>
+    </div>
+
+    <lightning-input
+        label="Subject"
+        value={subject}
+        onchange={handleSubject}>
+    </lightning-input>
+
+    <lightning-textarea
+        label="Message"
+        value={message}
+        onchange={handleMessage}>
+    </lightning-textarea>
+
+    <lightning-button
+        label="Send"
+        variant="brand"
+        onclick={sendEmail}
+        class="slds-m-top_medium">
+    </lightning-button>
+
+</div>
+
+</lightning-card>
+
+</template>

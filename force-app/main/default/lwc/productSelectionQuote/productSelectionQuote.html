@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Generate Quote">
+        <template if:true={products}>
+            <lightning-datatable
+                key-field="Id"
+                data={products}
+                columns={columns}
+                oncellchange={handleCellChange}
+                onrowselection={handleSelection}
+                selected-rows={selectedRowKeysForPage}
+                row-errors={rowErrors}
+            >
+            </lightning-datatable>
+
+            <div class="slds-m-top_medium slds-align_absolute-center">
+                <lightning-button 
+                    label="Previous"
+                    onclick={handlePrevious}
+                    disabled={isPreviousDisabled}>
+                </lightning-button>
+
+                <lightning-button 
+                    label="Next"
+                    class="slds-m-left_small"
+                    onclick={handleNext}
+                    disabled={isNextDisabled}>
+                </lightning-button>
+            </div>
+        </template>
+
+        <div class="slds-m-top_medium">
+            <lightning-button 
+                label="Create Quote"
+                variant="brand"
+                onclick={createQuote}
+                disabled={isLoading}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

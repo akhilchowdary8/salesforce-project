@@ -1,0 +1,50 @@
+<apex:page lightningStylesheets="true">
+    <apex:includeLightning /> <!-- Ensures Lightning is available -->
+<apex:slds ></apex:slds>
+    <div>
+        <h1>Visualforce Page with LMS</h1>
+        <input type="text" id="inputText" placeholder="Type your message here" />
+        <div>
+            <button onclick="publishHandler()">Publish</button>
+            <button onclick="subscribeHandler()">Subscribe</button>
+            <button onclick="unsubscribeHandler()">Unsubscribe</button>
+        </div>
+        <p>Message received:</p>
+        <p id="LMS"></p>
+    </div>
+
+    <script>
+        // Define the Lightning Message Channel
+        const messageChannel = "{!$MessageChannel.SampleMessage__c}";
+
+        // Declare global subscription variable
+        let subscription = null;
+
+        // Publish function
+        window.publishHandler = function() {
+            console.log("Publishing message...");
+            const inputValue = document.getElementById('inputText').value;
+            const messagePayload = { Data: { value1: inputValue } };
+            sforce.one.publish(messageChannel, messagePayload);
+        };
+
+        // Subscribe function
+        window.subscribeHandler = function() {
+         subscription=sforce.one.subscribe(messageChannel,msghandler, { scope: "APPLICATION" });
+            console.log("Subscribing to messages...");
+
+        };
+        function msghandler(message){
+            console.log("Message received: " + JSON.stringify(message));
+            document.getElementById('LMS').innerText = message.Data.value1;
+        }
+
+        // Unsubscribe function
+        window.unsubscribeHandler = function() {
+            console.log("Unsubscribing...");
+            sforce.one.unsubscribe(subscription);
+
+            }
+        
+    </script>
+</apex:page>

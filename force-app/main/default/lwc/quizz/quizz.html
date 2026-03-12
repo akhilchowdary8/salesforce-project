@@ -1,0 +1,50 @@
+<template>
+  <lightning-card title="Quiz">
+    <div class="slds-m-around_medium">
+      <form onsubmit={handleSubmit} onreset={handleReset}>
+        <template for:each={Questions} for:item="question">
+          <div
+            key={question.id}
+            class="slds-box slds-m-bottom_medium slds-p-around_medium"
+          >
+            <!-- Question Text -->
+            <p class="slds-text-heading_medium slds-m-bottom_small">
+              {question.id} - {question.Question}
+            </p>
+
+            <!-- Radio buttons for options -->
+            <template for:each={question.Options} for:item="option">
+              <div key={option} class="slds-form-element slds-m-bottom_small">
+                <lightning-input
+                  type="radio"
+                  label={option}
+                  value={option}
+                  name={question.id}
+                  onchange={handleOptionChange}
+                ></lightning-input>
+              </div>
+            </template>
+          </div>
+        </template>
+
+        <!-- Submit and Reset buttons -->
+        <div class="slds-p-top_medium">
+          <lightning-button
+            type="submit"
+            label="Submit"
+            disabled={disableSubmit}
+          >
+          </lightning-button>
+          <lightning-button type="reset" label="Reset"></lightning-button>
+        </div>
+      </form>
+      <div>
+        <template if:true={showResult}>
+          <p class="slds-text-heading_medium slds-m-top_medium">
+            Your Score: {score}
+          </p>
+        </template>
+      </div>
+    </div>
+  </lightning-card>
+</template>

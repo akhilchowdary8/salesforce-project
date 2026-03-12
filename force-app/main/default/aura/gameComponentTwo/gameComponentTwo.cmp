@@ -1,0 +1,37 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:attribute name="mode" type="String" default="Low" />
+  <!-- <aura:handler
+    name="blockClick"
+    event="c:auraFirstEvent"
+    action="{!c.blockClickHandler}"
+  /> -->
+  <aura:attribute name="clickCount" type="Integer" default="0" />
+  <aura:attribute name="words" type="array" />
+  <aura:attribute name="winWord" type="String" />
+  <aura:attribute name="size" type="Integer" default="4" />
+  <aura:attribute name="word" type="String" />
+  <aura:attribute name="result" type="String" default="loading" />
+  <aura:attribute name="boardDisabled" type="Boolean" default="false" />
+  <aura:method name="startNewGame" action="{!c.doInit}" />
+  <div>
+    <span class="Size">Word :</span>
+    <span class="wordCss">{!v.winWord}</span>
+    <span class="Size">moves left :</span>
+    <span class="movesLeftCss"> {!(3-v.clickCount)}</span>
+    <aura:if isTrue="{!And(v.clickCount == 3,v.boardDisabled == true)}">
+      <p><span>Game Over :</span><span>{!v.result}</span></p>
+      <div class="bord-disabled"></div>
+    </aura:if>
+    <lightning:layout multipleRows="true">
+      <aura:iteration items="{!v.words}" var="word">
+        <lightning:layoutItem padding="around-small" size="{!v.size}">
+          <c:gameComponentThird
+            blockClick="{!c.blockClickHandler}"
+            label="{!word}"
+          />
+        </lightning:layoutItem>
+      </aura:iteration>
+    </lightning:layout>
+  </div>
+</aura:component>

@@ -1,0 +1,17 @@
+<aura:component>
+  <aura:attribute name="label" type="String" />
+  <aura:attribute name="clicked" type="Boolean" default="false" />
+  <!-- <ltng:require
+    scripts="{!$Resource.Fittext}"
+    afterScriptsLoaded="{!c.scriptsLoaded}"
+  /> -->
+  <aura:registerEvent name="blockClick" type="c:auraFirstEvent" />
+  <div
+    class="board-block slds-align_absolute-center slds-var-m-around_medium slds-var-p-around_medium"
+    onclick="{!c.blockClickHandler}"
+  >
+    <aura:if isTrue="{!v.clicked}">
+      <div class="board">{!v.label}</div>
+    </aura:if>
+  </div>
+</aura:component>

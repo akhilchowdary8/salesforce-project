@@ -1,0 +1,58 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:attribute
+    name="modes"
+    type="List"
+    default="[
+    {'label': 'Low', 'value': 'Low'},
+    {'label': 'Medium', 'value': 'Medium'},
+    {'label': 'Difficult', 'value': 'Difficult'},
+    ]"
+  />
+  <aura:attribute name="GameModes" type="String" />
+  <aura:attribute name="clickCount" type="Integer" default="0" />
+  <aura:attribute name="startGame" type="Boolean" default="false" />
+  <lightning:card title="Word Shuffle" iconName="custom:custom14">
+    <lightning:layout horizontalAlign="center" multipleRows="true">
+      <lightning:layoutItem padding="around-small">
+        <lightning:combobox
+          aura:id="GameMode"
+          name="Game mode"
+          label="Status"
+          value="Medium"
+          placeholder="Select GameMode"
+          options="{!v.modes }"
+          onchange="{!c.handleChange }"
+          variant="label-hidden"
+        />
+      </lightning:layoutItem>
+      <lightning:layoutItem padding="around-small">
+        <lightning:button
+          aura:id="startGame"
+          variant="brand"
+          label="Start New Game"
+          title="Brand action"
+          onclick="{!c.handleClickSubmit }"
+        />
+      </lightning:layoutItem>
+      <lightning:layoutItem padding="around-small">
+        <lightning:button
+          aura:id="resetGame"
+          variant="base"
+          label="Reset Game"
+          title="Base action"
+          onclick="{!c.handleClickReset }"
+        />
+      </lightning:layoutItem>
+    </lightning:layout>
+
+    <aura:if isTrue="{!AND(v.startGame, (v.GameModes!=null))}">
+      <c:gameComponentTwo
+        aura:id="startGamechild"
+        mode="{!v.GameModes}"
+      ></c:gameComponentTwo>
+      <aura:set attribute="else">
+        <p>Select the Mode and click on start</p>
+      </aura:set>
+    </aura:if>
+  </lightning:card>
+</aura:component>

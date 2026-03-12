@@ -1,0 +1,22 @@
+.THIS .Size {
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+.THIS .wordCss,
+.THIS .movesLeftCss {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.THIS .bord-disabled {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  cursor: not-allowed;
+}

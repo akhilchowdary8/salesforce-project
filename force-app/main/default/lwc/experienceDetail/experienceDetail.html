@@ -1,0 +1,16 @@
+<template>
+
+    <div class="slds-page-header slds-page-header_record-home">
+        <h1 class="slds-page-header__title">
+            {record.Name}
+        </h1>
+        <p>{record.Company__c} • {record.Role__c}</p>
+
+        <lightning-button
+            label="Back"
+            onclick={handleBack}
+            class="slds-m-top_small">
+        </lightning-button>
+    </div>
+
+</template>

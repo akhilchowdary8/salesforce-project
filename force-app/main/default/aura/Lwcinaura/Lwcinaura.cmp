@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:attribute
+    name="title"
+    type="String"
+    default="I am from Aura"
+  ></aura:attribute>
+  <lightning:card title="LWC in Aura">
+    <p>aura component</p>
+    <p>{!v.title}</p>
+  </lightning:card>
+  <c:lwcAndAura
+    onbuttonclick="{!c.Handledata}"
+    title="iam from Aura and rendered in LWC"
+  ></c:lwcAndAura>
+</aura:component>

@@ -1,0 +1,15 @@
+<template>
+  <lightning-card title="Child Modal" icon-name="custom:custom14">
+    <div class="slds-m-around_medium">
+      <p>{parentModalText}</p>
+    </div>
+  </lightning-card>
+  <lightning-button
+    label="Open Child Modal"
+    onclick={openChildModal}
+  ></lightning-button>
+
+  <template if:true={isChildModalOpen}>
+    <c-child-modal onclosemodals={closeChild}></c-child-modal>
+  </template>
+</template>

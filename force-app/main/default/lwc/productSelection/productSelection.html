@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Generate Quote">
+        
+        <template if:true={products}>
+        <lightning-datatable
+    key-field="Id"
+    data={products}
+    columns={columns}
+    onrowselection={handleSelection}
+    max-row-selection="10"
+    show-row-number-column>
+</lightning-datatable>
+        </template>
+
+        <div class="slds-m-top_medium">
+            <lightning-button 
+                label="Create Quote"
+                variant="brand"
+                onclick={createQuote}>
+            </lightning-button>
+        </div>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-theme_default">
+
+        <c-app-navigation
+            active-tab={activeTab}
+            ontabchange={handleTabChange}>
+        </c-app-navigation>
+
+        <div class="slds-p-around_medium slds-app">
+            <c-app-container active-tab={activeTab}></c-app-container>
+        </div>
+
+    </div>
+</template>

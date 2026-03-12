@@ -1,0 +1,179 @@
+.score-card {
+  display: flex;
+  justify-content: space-around; /* Distribute items evenly with space between */
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Add spacing between the items */
+  padding: 10px; /* Add padding around the section */
+  background-color: #f9f9f9; /* Light background for contrast */
+  border: 1px solid #ddd; /* Add a subtle border */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+}
+
+.score-items {
+  font-size: 16px; /* Adjust font size for better readability */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Darker text color for better contrast */
+  margin: 0; /* Remove default margin */
+}
+
+.restart {
+  cursor: pointer;
+  font-size: 20px; /* Keep the restart icon slightly larger */
+  color: #0079bf; /* Use a distinct color for the icon */
+  transition: transform 0.2s ease; /* Add a smooth hover effect */
+}
+
+.restart:hover {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+}
+
+.card-deck.grid-container {
+  display: grid;
+  grid-template-columns: repeat(
+    4,
+    84px
+  ); /* 4 columns with fixed width of 84px */
+  grid-template-rows: repeat(4, 84px); /* 4 rows with fixed height of 84px */
+  gap: 5px; /* Equal spacing between grid items */
+}
+
+.card-deck.grid-container li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Rounded corners */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background: red;
+  color: red;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease; /* Smooth transitions */
+}
+
+.card-deck.grid-container li.open {
+  transform: rotateY(180deg); /* Flip animation */
+  background-color: #ffffff; /* Reveal background */
+  color: #333; /* Reveal text/icon color */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add depth when flipped */
+}
+
+.card-deck.grid-container li.show {
+  background-color: #e0f7fa; /* Light cyan background for revealed state */
+  color: #00796b; /* Teal color for icons/text */
+  animation: fadeIn 0.6s ease; /* Smooth fade-in animation */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow for visibility */
+}
+
+.card-deck.grid-container li.disabled {
+  pointer-events: none; /* Disable further clicks */
+  /*opacity: 0.5; Dim the card to indicate it's disabled */
+  /*background-color: #bdbdbd; Gray background for disabled state */
+  /*color: #757575; Dimmed text/icon color */
+}
+
+/* Match class with tick symbol and animation */
+.card-deck.grid-container li.match {
+  /* Green background for match */
+  transform: scale(1.1); /* Slightly enlarge the card */
+  animation: tick-animation 0.5s ease-in-out;
+  position: relative; /* Ensure the pseudo-element is positioned relative to the card */
+  background-color: #e0f7fa; /* Light cyan background for revealed state */
+  color: #00796b; /* Teal color for icons/text */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card.match::after {
+  content: "\2713"; /* Unicode for tick symbol */
+  position: absolute;
+  top: 10%; /* Position the tick symbol slightly above the center */
+  right: 10%; /* Position the tick symbol slightly to the right */
+  font-size: 1.5rem; /* Adjust the size of the tick symbol */
+  color: rgb(78, 255, 2); /* Tick symbol color */
+  z-index: 1; /* Ensure the tick symbol appears above the card's content */
+}
+
+/* Unmatch class with cross symbol and animation */
+.card-deck.grid-container li.unmatch {
+  background-color: rgb(112, 3, 3); /* Red background for unmatch */
+  transform: scale(1.1); /* Slightly enlarge the card */
+  animation: cross-animation 0.5s ease-in-out;
+  color: rgb(255, 153, 0);
+}
+
+.card.unmatch::after {
+  content: "\2716"; /* Unicode for cross symbol */
+  position: absolute;
+  top: 10%; /* Position the tick symbol slightly above the center */
+  right: 10%; /* Position the tick symbol slightly to the right */
+  font-size: 1.5rem; /* Adjust the size of the tick symbol */
+  color: rgba(7, 2, 1, 0.973); /* Tick symbol color */
+  z-index: 1;
+}
+
+/* Fade-in animation for the 'show' class */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Tick animation */
+@keyframes tick-animation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Cross animation */
+@keyframes cross-animation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.slds-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* Center the card horizontally and vertically */
+  padding: 20px; /* Add spacing inside the card */
+  max-width: 500px; /* Optional: Limit the card's width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better visibility */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the body takes the full viewport height */
+  margin: 0; /* Remove default body margin */
+  background-color: #f9f9f9; /* Optional: Add a background color */
+}
