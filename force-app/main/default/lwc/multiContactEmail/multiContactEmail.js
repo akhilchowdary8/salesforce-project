@@ -8,7 +8,7 @@ export default class MultiContactEmail extends LightningElement {
 
 @track searchResults = [];
 @track selectedContacts = [];
-
+@track isLoading = false;
 subject = '';
 message = '';
 
@@ -74,30 +74,41 @@ this.message = event.target.value;
 
 sendEmail(){
 
-if(!this.subject || !this.message){
+    if(!this.subject || !this.message){
 
-this.showToast('Error','Subject and Message required','error');
-return;
+        this.showToast('Error','Subject and Message required','error');
+        return;
 
-}
+    }
 
-const ids = this.selectedContacts.map(c => c.Id);
+    const ids = this.selectedContacts.map(c => c.Id);
 
-sendEmails({
-contactIds:ids,
-subject:this.subject,
-message:this.message
-})
-.then(result => {
+    this.isLoading = true;
 
-this.showToast('Success',result,'success');
+    sendEmails({
+        contactIds:ids,
+        subject:this.subject,
+        message:this.message
+    })
+    .then(result => {
 
-})
-.catch(error => {
+        this.showToast('Success',result,'success');
 
-this.showToast('Error',error.body.message,'error');
+        this.selectedContacts = [];
+        this.subject = '';
+        this.message = '';
 
-});
+    })
+    .catch(error => {
+
+        this.showToast('Error',error.body.message,'error');
+
+    })
+    .finally(() => {
+
+        this.isLoading = false;
+
+    });
 
 }
 
