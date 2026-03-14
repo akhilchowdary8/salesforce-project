@@ -42,7 +42,6 @@ public class Stack {
     }
     
     public Boolean isEmpty() {
-        return (this.a.size()>0? true:false);
-        //implement isEmpty
+        return this.a.isEmpty();
     }
 }
