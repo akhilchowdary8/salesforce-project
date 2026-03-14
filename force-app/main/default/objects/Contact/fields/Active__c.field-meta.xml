@@ -3,6 +3,7 @@
     <fullName>Active__c</fullName>
     <defaultValue>false</defaultValue>
     <description>active contact</description>
+    <externalId>false</externalId>
     <label>Active</label>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Checkbox</type>

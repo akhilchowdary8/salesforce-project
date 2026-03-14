@@ -4,6 +4,7 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>Indicates whether the contract is evergreen.</description>
+    <externalId>false</externalId>
     <inlineHelpText>Indicates whether the contract is evergreen.</inlineHelpText>
     <label>Evergreen</label>
     <trackHistory>false</trackHistory>
