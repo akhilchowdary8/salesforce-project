@@ -4,14 +4,15 @@ public class OpportunityDeletion implements Database.Batchable<SObject>, Databas
   List<Id> failedIds = new List<Id>();
   List<String> failedMessages = new List<String>();
 
-  public Database.QueryLocator start(Database.BatchableContext BC) {
-    return Database.getQueryLocator(
-      'select id from opportunity where CloseDate< TODAY'
-    );
-  }
-  public void execute(Database.BatchableContext BC, List<opportunity> scope) {
-    List<Opportunity> del = new List<Opportunity>();
-    for (Opportunity temp : scope) {
+public Database.QueryLocator start(Database.BatchableContext BC) {
+
+    String pattern = '%' + 'Reddy' + '%';
+
+    return Database.getQueryLocator('SELECT Id FROM Contact');
+}
+  public void execute(Database.BatchableContext BC, List<Contact> scope) {
+    List<Contact> del = new List<Contact>();
+    for (Contact temp : scope) {
           del.add(temp);
     } 
    Database.DeleteResult[] res = Database.delete(del, false);
