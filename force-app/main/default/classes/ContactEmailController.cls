@@ -54,7 +54,7 @@ public with sharing class ContactEmailController {
         }
 
         if(!emails.isEmpty()){
-            Messaging.SendEmailResult[] results = Messaging.sendEmail(emails);
+            Messaging.sendEmail(emails);
         }
 
         return 'Emails sent successfully.';

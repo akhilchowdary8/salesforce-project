@@ -4,6 +4,7 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>Indicates if the order is contracted.</description>
+    <externalId>false</externalId>
     <inlineHelpText>Indicates if the order is contracted.</inlineHelpText>
     <label>Contracted</label>
     <trackHistory>false</trackHistory>

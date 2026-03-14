@@ -4,6 +4,7 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>Select to trigger the generation of a renewal opportunity for forecasting purposes. Does not automatically generate a renewal quote.</description>
+    <externalId>false</externalId>
     <inlineHelpText>Select to trigger the generation of a renewal opportunity for forecasting purposes. Does not automatically generate a renewal quote.</inlineHelpText>
     <label>Renewal Forecast</label>
     <trackHistory>false</trackHistory>

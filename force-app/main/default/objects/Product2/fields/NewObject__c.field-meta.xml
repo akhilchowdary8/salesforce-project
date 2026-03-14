@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>NewObject__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
     <inlineHelpText>lookup product new object</inlineHelpText>
     <label>NewObject</label>
     <referenceTo>NewObject__c</referenceTo>
