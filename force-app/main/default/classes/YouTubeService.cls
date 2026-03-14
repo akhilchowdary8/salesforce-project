@@ -1,29 +1,33 @@
 public with sharing class YouTubeService {
 
-    public static String searchVideos(String keyword){
+    @TestVisible
+    private static final String NAMED_CREDENTIAL_PATH = 'callout:YouTube_API/youtube/v3/search';
 
-//         String apiKey = 'AIzaSyAXYKG4WKFtQ70Fr01j5r5GcEuEXFv4TAw';
-// String endpoint = 'https://www.googleapis.com/youtube/v3/search?q=' 
-//                     + keyword +
-//                     '&part=snippet&type=video&maxResults=5&key='
-//                     + apiKey;
-
+    public static String searchVideos(String keyword) {
+        if (String.isBlank(keyword)) {
+            return null;
+        }
 
         Http http = new Http();
         HttpRequest req = new HttpRequest();
-
-        // req.setEndpoint(endpoint);
         req.setMethod('GET');
         req.setTimeout(60000);
-  req.setEndpoint(
-            'callout:YouTube_API/youtube/v3/search?q=' + keyword +
-            '&part=snippet&type=video&maxResults=5'
-        );       
-		 HttpResponse res = http.send(req);
+        req.setEndpoint(buildSearchEndpoint(keyword));
 
-        System.debug('Status Code: ' + res.getStatusCode());
-        System.debug('Response: ' + res.getBody());
+        HttpResponse res = http.send(req);
+        Integer statusCode = res.getStatusCode();
+
+        if (statusCode < 200 || statusCode >= 300) {
+            throw new CalloutException('YouTube API call failed with status code ' + statusCode);
+        }
 
         return res.getBody();
+    }
+
+    @TestVisible
+    private static String buildSearchEndpoint(String keyword) {
+        return NAMED_CREDENTIAL_PATH
+            + '?q=' + EncodingUtil.urlEncode(keyword, 'UTF-8')
+            + '&part=snippet&type=video&maxResults=5';
     }
 }

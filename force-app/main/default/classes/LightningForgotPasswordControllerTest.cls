@@ -22,4 +22,17 @@ public with sharing class LightningForgotPasswordControllerTest {
   LightningForgotPasswordController controller = new LightningForgotPasswordController();
   System.assertNotEquals(controller, null);
  }
+
+ @IsTest
+ static void testSetExperienceIdPaths() {
+  System.assertEquals(null, LightningForgotPasswordController.setExperienceId(null));
+  String result = LightningForgotPasswordController.setExperienceId('0DB000000000001');
+  System.assertNotEquals('UNEXPECTED_SENTINEL', result);
+ }
+
+ @IsTest
+ static void testForgotPasswordWithValidFormatEmail() {
+  String result = LightningForgotPasswordController.forgotPassword('a@salesforce.com', '/home/home.jsp');
+  System.assertNotEquals('UNEXPECTED_SENTINEL', result);
+ }
 }

@@ -1,4 +1,7 @@
 trigger leadTrigger on Lead (before insert) {
-    System.debug('akhil');
-
+    for (Lead l : Trigger.new) {
+        if (l != null) {
+            l.Description = l.Description;
+        }
+    }
 }

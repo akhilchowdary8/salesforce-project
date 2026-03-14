@@ -1,22 +1,9 @@
-/**
- * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
- * Class Name      : YouTubeWrapper
- * Author          : <YourName>
- * Created Date    : Mar 14, 2026
- * Last Modified By: <YourName>
- * Last Modified On: Mar 14, 2026
- * Description     : This class implements for......
- *  
- * Change History  :
- *  Date          │   Author     │   Change
- * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
- *  Mar 14, 2026  │ <YourName>   │ Initial version
- * ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
- */
-
 public class YouTubeWrapper {
-
     public List<Item> items;
+
+    public static YouTubeWrapper parse(String payload) {
+        return (YouTubeWrapper) JSON.deserialize(payload, YouTubeWrapper.class);
+    }
 
     public class Item {
         public IdInfo id;
@@ -31,15 +18,11 @@ public class YouTubeWrapper {
         public String title;
         public String description;
         public String channelTitle;
-        public String publishedAt;
-        public Thumbnails thumbnails;
+        public Datetime publishedAt;
+        public Map<String, Thumbnail> thumbnails;
     }
-public class Thumbnails {
-    public DefaultThumbnail defaultThumbnail;
-}
 
-    public class DefaultThumbnail {
+    public class Thumbnail {
         public String url;
     }
-
 }
